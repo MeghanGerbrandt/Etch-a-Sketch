@@ -1,40 +1,45 @@
-let gridSize =  16;
+let gridSize = document.querySelector(".slider-value").value;
 
 const gridContainer = document.querySelector(".grid-container");
-const bodyContainer = document.querySelector(".body-container");
+let sliderValue = document.querySelector("#size-value");
+let sliderLabel = document.querySelector(".slider-label"); 
 
-function createGrid(numOfBoxes) {
-    for(let i = 0; i < numOfBoxes; i++) {
+sliderValue.addEventListener("input", updateGridSize);
+
+function updateGridSize() {
+    gridSize = sliderValue.value;
+    sliderLabel.textContent = `Size: ${gridSize} x ${gridSize}`;
+    resetButton();
+}
+
+function createGrid(sliderValue) {
+    for(let i = 0; i < sliderValue; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
         gridContainer.appendChild(row);
 
-        for(let j = 0; j < numOfBoxes; j++) {
-            const sizeOfBox = 500 / gridSize;
+        for(let j = 0; j < sliderValue; j++) {
+            const sizeOfBox =  400 / gridSize;
             const box = document.createElement("div");
             box.classList.add("box");
             box.style.width = `${sizeOfBox}px`;
             box.style.height = `${sizeOfBox}px`;
             row.appendChild(box);
-            box.addEventListener('mouseover', function () {
-                box.style.backgroundColor="#384048";
+            box.addEventListener('mouseover', function colorBlack() {
+                box.style.backgroundColor="#384048"; 
             })
-        }
-        
+        } 
     }
 }
-
 function resetButton() {
-    const box = gridContainer.querySelectorAll("div");
-    box.forEach((div) => (div.style.backgroundColor = "whitesmoke"));
+    gridContainer.innerHTML = "";
+    createGrid(gridSize);
 }
-function sizeOfGrid(sizeOfBox) {
-    
- 
-  }
 
+createGrid(gridSize);
+createResetButton();
 
-function createResetButton() {
+/*function createResetButton() {
     const resetButton = document.createElement("button");
     resetButton.classList.add("resetButton");
     bodyContainer.appendChild(resetButton);
@@ -51,19 +56,11 @@ function createColorButton() {
     resetButton.classList.add("resetButton");
     bodyContainer.appendChild(resetButton);
     resetButton.innerHTML = `<button onclick="resetButton()">Color</button>`;
-}
-function createSizeButton() {
-    const resetButton = document.createElement("button");
-    resetButton.classList.add("resetButton");
-    bodyContainer.appendChild(resetButton);
-    resetButton.innerHTML = `<button onclick="resetButton()">Size</button>`;
-}
+}*/
 
-createGrid(gridSize);
-createResetButton();
-createColorButton();
-createMonoButton();
-createSizeButton();
+
+
+
 
 
 

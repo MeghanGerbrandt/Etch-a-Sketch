@@ -11,7 +11,13 @@
     <div class="body-container">
         <h1 class="header"><img src="images/Etch-a-Sketch.jpg"></h1>
         <div class="grid-container"></div>
-        <div class = button-container></div>
+        <div class = button-container>
+            <div class="slider-container">
+            <label class="slider-label">Size: 16 x 16</label>
+            <input type="range" class="slider-value" id="size-value" min="1" max="100" value="16"></div>
+            <button class="reset-button" onclick="resetButton()">Erase</button>
+        </div>
+      
     </div> 
 </body>
 </html>
