@@ -1,5 +1,4 @@
 let gridSize = document.querySelector(".slider-value").value;
-
 const gridContainer = document.querySelector(".grid-container");
 let sliderValue = document.querySelector("#size-value");
 let sliderLabel = document.querySelector(".slider-label"); 
@@ -9,7 +8,7 @@ sliderValue.addEventListener("input", updateGridSize);
 function updateGridSize() {
     gridSize = sliderValue.value;
     sliderLabel.textContent = `Size: ${gridSize} x ${gridSize}`;
-    resetButton();
+    resetButton();    
 }
 
 function createGrid(sliderValue) {
@@ -31,13 +30,22 @@ function createGrid(sliderValue) {
         } 
     }
 }
+
 function resetButton() {
     gridContainer.innerHTML = "";
     createGrid(gridSize);
 }
 
+function resetGrid() {
+    gridSize = document.querySelector(".slider-value").value;
+    resetButton();
+  }
+
 createGrid(gridSize);
-createResetButton();
+
+
+
+//createResetButton();
 
 /*function createResetButton() {
     const resetButton = document.createElement("button");
